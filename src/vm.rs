@@ -26,7 +26,9 @@ impl MalbolgeVM {
             mem.push(byte as u16);
         }
 
-        if mem.len() == 1 {
+        if mem.is_empty() {
+            runtime_error!("Empty programs not allowed.");
+        } else if mem.len() == 1 {
             mem.push(crazy(mem[0], 0));
         }
 
